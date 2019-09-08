@@ -16,3 +16,16 @@
 body{
   background-color: lightgray
 }
+
+
+#myBtns{
+  display:flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.btn{
+  margin:25px;
+  padding:20px;
+}

@@ -39,17 +39,87 @@ const PTD = (stringToPrint,divId) => {
   selectedDiv.innerHTML = stringToPrint;
 }
 
-const teamBuilder = () => {
-  let teamString = '';
-  for(let i = 0; i<teams.length;i++){
-    teamString +=`<div class="card" style="width: 18rem;">
-    <img src="${teams[i].img}" class="card-img-top" alt="...">
-    <div class="card-body">
-      <p class="card-text text-center">${teams[i].name}</p>
-      <p class="card-text text-center">${teams[i].coach}</p>
-    </div>
-    </div>`;
-  }
-  PTD(teamString,'cards');
+
+// For Loop
+// const teamBuilder = (teamsArray) => {
+//   let teamString = '';
+//   for(let i = 0; i<teamsArray.length;i++){
+//     const team = teamsArray[i];
+//     teamString +=`<div class="card" style="width: 18rem;">
+//     <img src="${team.img}" class="card-img-top" alt="...">
+//     <div class="card-body">
+//       <p class="card-text text-center">${team.name}</p>
+//       <p class="card-text text-center">${team.coach}</p>
+//     </div>
+//     </div>`;
+//   }
+//   PTD(teamString,'cards');
+// }
+
+
+const teamBuilder = (teams) => {
+  let cardString = '';
+  teams.forEach((squad) => {
+    cardString +=`<div class="card" style="width: 18rem;">
+          <img src="${squad.img}" class="card-img-top" alt="...">
+          <div class="card-body">
+          <p class="card-text text-center">${squad.name}</p>
+         <p class="card-text text-center">${squad.coach}</p>
+          </div>
+         </div>`;
+  })
+  PTD(cardString,'cards');
 }
 // teamBuilder();
+
+const printBtns = () => {
+  let btnString = `<button id='Raymond' type="button" class="btn btn-primary">Raymond</button>
+  <button id='Chandler' type="button" class="btn btn-secondary">Chandler</button>
+  <button id='Carla' type="button" class="btn btn-success">Carla</button>
+  <button id='All' type="button" class="btn btn-danger">All</button>`;
+  PTD(btnString,'myBtns');
+}
+printBtns();
+
+// const btnEvents = (e) => {
+//   const coach = e.target.id;
+//   const selectedTeams = [];
+//   for(let i =0;i<teams.length;i++){
+//     const team = teams[i];
+//     if(team.coach === coach){
+//       selectedTeams.push(team);
+//     }
+//   }
+//   if (coach === 'All') {
+//     teamBuilder(teams);
+//   } else {
+//     teamBuilder(selectedTeams);
+//   }
+// }
+
+const btnEvents = (e) => {
+  const btnClicked = e.target.id;
+  if(btnClicked === 'Raymond'){
+    let rayTeams = teams.filter(rTeams => rTeams.coach ==='Raymond');
+    teamBuilder(rayTeams);
+  } else if (btnClicked === 'Chandler'){
+    let chanTeams = teams.filter(chTeams => chTeams.coach === 'Chandler');
+    teamBuilder(chanTeams);
+  } else {
+    let ccTeams = teams.filter(caTeams => caTeams.coach === 'Carla');
+    teamBuilder(ccTeams);
+  } 
+}
+
+const allTeams = (e) => {
+  teamBuilder(teams);
+}
+allTeams();
+
+
+document.getElementById('Raymond').addEventListener('click',btnEvents);
+document.getElementById('Chandler').addEventListener('click',btnEvents);
+document.getElementById('Carla').addEventListener('click',btnEvents);
+document.getElementById('All').addEventListener('click',allTeams);
+
+// teamBuilder(teams);
