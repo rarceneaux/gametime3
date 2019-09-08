@@ -1,3 +1,18 @@
+#cards{
+  display:flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.card{
+  margin:25px;
+}
+
+.card-body{
+  background-color: darkgray;
+}
+
 body{
-  background-color: ghostwhite;
+  background-color: lightgray
 }
