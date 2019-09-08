@@ -34,3 +34,22 @@ const teams = [
 
 // console.log(teams);
 
+const PTD = (stringToPrint,divId) => {
+  const selectedDiv = document.getElementById(divId);
+  selectedDiv.innerHTML = stringToPrint;
+}
+
+const teamBuilder = () => {
+  let teamString = '';
+  for(let i = 0; i<teams.length;i++){
+    teamString +=`<div class="card" style="width: 18rem;">
+    <img src="${teams[i].img}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <p class="card-text text-center">${teams[i].name}</p>
+      <p class="card-text text-center">${teams[i].coach}</p>
+    </div>
+    </div>`;
+  }
+  PTD(teamString,'cards');
+}
+// teamBuilder();
